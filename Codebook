@@ -2,10 +2,8 @@
 Codebook Assignment Getting and cleaning Data
 
 This code book summarizes the data and variables in tidyData.txt 
--- this is the output of the Week 4 project in the JHU course Getting & Cleaning Data 
-while providing information on the Data Set and Attributes used from the original study
 
-STuDY INFORMATION
+Data Set
 
 Information on Data Set The experiments have been carried out with a group of 30 volunteers 
 within an age bracket of 19-48 years. Each person performed six activities 
@@ -24,7 +22,7 @@ assumed to have only low frequency components, therefore a filter with 0.3 Hz cu
 From each window, a vector of features was obtained by calculating variables from the time and 
 frequency domain.
 
-Information on Attributes For each record in the dataset it is provided:
+Attributes For each record in the dataset it is provided:
 
 Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
 Triaxial Angular velocity from the gyroscope.
@@ -32,9 +30,9 @@ A 561-feature vector with time and frequency domain variables.
 Its activity label.
 An identifier of the subject who carried out the experiment.
 
-INFORMATION ON RUN ANALYSIS SCRIPT
+RUN ANALYSIS SCRIPT
 
-GOALS OF RUNANALYSIS SCRIPT Script was designed to: Input UCI HAR Dataset downloaded from 
+R code script was designed to: Input UCI HAR Dataset downloaded from 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
 1. Merge the training and the test sets to create one data set. 
@@ -46,38 +44,30 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 1. MERGING TRAINING & TEST SETS
 
-The following text files were imported and merged. Column names were assigned at the time each file 
-was imported and prior to merge. Files were imported individually and applicable files were then 
-merged into sets, first all files in the TRAINING set (_train.txt) then all files in the TEST set (_test.txt). 
-This was done prior to merging the two sets into one larger data set. The features and activity_labels files 
-had column names assigned but were not merged and will be used later.
+The following text files were imported and merged. Column names were assigned after files 
+was merged. 
 
 Text Files Imported:
 
 'features.txt'
-'activity_labels.txt'
-'subject_train.txt'
-'x_train.txt'
-'y_train.txt'
-'subject_test.txt'
-'x_test.txt'
-'y_test.txt'
+'activityLabels.txt'
+'subjecttrain.txt'
+'xtrain.txt'
+'ytrain.txt'
+'subjecttest.txt'
+'xtest.txt'
+'ytest.txt'
 
-2. EXTRACTING MEASUREMENTS ON MEAN & STANDARD DEVIATION 
-   A logical vector was created identifying TRUE for the ID, mean & stdev columns and 
-   FALSE for other values. Merged data was then subsetted to only keep the relevant columns
+2. A logical vector was created identifying TRUE for the ID, mean & stdev columns and 
+   FALSE for other values. Merged data was then subsetted to keep relevant columns
 
-3. RENAME ACTIVITIES IN DATA SET WITH DESCRIPTIVE ACTIVITY NAMES 'activity_labels.txt' 
-   was merged with the subsetted data to add descriptive activity names to merged and subsetted data set. 
-   Values in 'activityId' column were then replaced with the matching values from the 'activityType' column
-   in order to make the data easier to read.
+3. Rename activities in data set with descriptive activity names 'datactivityNames.txt' 
+   was done.
+   
+4. Data set was appropriately label with descriptive names using the 'gsub' function 
+   to clean up the column names in merged & subsetted data set.
 
-4. APPROPRIATELY LABEL DATA SET WITH DESCRIPTIVE ACTIVITY NAMES Used the 'gsub' function 
-   to clean up the column names in merged & subsetted data set. 'activityType' column removed 
-   in order to tidy data further.
-
-5. INDEPENDNENT TIDY DATA SET CREATED WITH AVERAGE FOR EACH VARIABLE & EACH SUBJECT New table 
-   was created which contains average for each variable for each activity and subject.
+5. New table (independent tidy dataset) was created which contains average for each variable for each activity and subject.
 
 "subjectId" 
 "activityId" 
